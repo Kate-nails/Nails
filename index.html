@@ -429,6 +429,11 @@ h1 em .wsplit>span,.h2 em .wsplit>span{background:var(--chrome);background-size:
   .svc--wide{flex-direction:column}
   .svc--wide .svc__pic{flex:none;aspect-ratio:4/3;margin:0 8px 8px}
   .gallery__head{flex-direction:column;align-items:flex-start;padding-top:64px}
+  .gallery{height:auto}
+  .gallery__stage{position:relative;top:auto;height:auto;overflow:hidden;padding-bottom:28px}
+  .gallery__track{width:100%;max-width:100%;overflow-x:auto;transform:none;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gut)}
+  .gallery .work{height:58svh;scroll-snap-align:center;transform:none}
+  .gallery__bar{display:none}
   .work{height:56svh}
   .step{top:calc(80px + var(--i)*12px)}
   .closing__word{font-size:clamp(100px,32vw,200px)}
