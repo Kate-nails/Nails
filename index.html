@@ -15,6 +15,7 @@
 <meta property="og:image" content="assets/rosa-mariposa.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#07070a">
+<link rel="preload" as="video" href="assets/stiletto.mp4" type="video/mp4" fetchpriority="high">
 <link rel="icon" href="assets/brand/marca.svg" type="image/svg+xml">
 <link rel="icon" href="assets/brand/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
@@ -506,7 +507,7 @@ h1 em .wsplit>span,.h2 em .wsplit>span{background:var(--chrome);background-size:
     </div>
 
     <div class="tile hero__video" data-tilt>
-      <video data-src="assets/stiletto.mp4" poster="assets/stiletto-0.8.jpg" muted loop playsinline preload="none" aria-label="Video: uñas stiletto plateadas con animal print"></video>
+      <video src="assets/stiletto.mp4" poster="assets/stiletto-0.8.jpg" autoplay muted loop playsinline preload="auto" fetchpriority="high" aria-label="Video: uñas stiletto plateadas con animal print"></video>
       <span class="chip chip--cream">▶ Recién salidas</span>
       <span class="chip">Stiletto plateado · animal print</span>
     </div>
@@ -751,11 +752,11 @@ h1 em .wsplit>span,.h2 em .wsplit>span{background:var(--chrome);background-size:
   }), { rootMargin: '0px 0px -12% 0px' });
   $$('[data-reveal]').forEach(el => io.observe(el));
 
-  /* ── videos: el archivo entra cuando la página ya se ve, y solo si el video está en pantalla ── */
+  /* ── videos: el de portada ya viene en el HTML; el de la galería entra al verse ── */
   const armVideo = v => {
     if (!v.dataset.src || v.getAttribute('src')) return;
     if (v.dataset.poster) v.poster = v.dataset.poster;
-    v.preload = 'metadata';
+    v.preload = 'auto';
     v.src = v.dataset.src;
   };
   const vio = new IntersectionObserver(es => es.forEach(e => {
@@ -763,9 +764,7 @@ h1 em .wsplit>span,.h2 em .wsplit>span{background:var(--chrome);background-size:
     if (e.isIntersecting) { armVideo(v); v.play().catch(() => {}); }
     else v.pause();
   }), { threshold: .15 });
-  const watchVideos = () => $$('video').forEach(v => vio.observe(v));
-  if (document.readyState === 'complete') watchVideos();
-  else addEventListener('load', watchVideos);
+  $$('video').forEach(v => vio.observe(v));
 
   /* ── nav: sólida al bajar, se esconde al bajar y vuelve al subir ── */
   const nav = $('#nav'), bar = $('.progress');
