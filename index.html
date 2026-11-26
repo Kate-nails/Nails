@@ -15,10 +15,13 @@
 <meta property="og:image" content="assets/rosa-mariposa.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#07070a">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <link rel="preload" as="video" href="assets/stiletto.mp4" type="video/mp4" fetchpriority="high">
-<link rel="icon" href="assets/brand/marca.svg" type="image/svg+xml">
-<link rel="icon" href="assets/brand/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<link rel="icon" href="favicon.ico?v=3" sizes="48x48">
+<link rel="icon" href="assets/brand/favicon-32.png?v=3" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/brand/icon-192.png?v=2" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png?v=2">
+<link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" media="print" onload="this.media='all'">
@@ -209,25 +212,16 @@ section{scroll-margin-top:90px}
 .services__intro{grid-column:1/13;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gut);align-items:end;padding:0 clamp(8px,2vw,40px) clamp(28px,4vw,52px)}
 .services__intro h2{grid-column:1/8}
 .services__intro p{grid-column:8/13;color:var(--mute);max-width:42ch}
-.svc{grid-column:span 4;min-height:340px;display:flex;flex-direction:column;justify-content:space-between;gap:28px;cursor:default;transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
-.svc:nth-child(2),.svc:nth-child(8){grid-column:span 4}
-.svc--wide{grid-column:span 8 !important}
-.svc:hover{translate:0 -6px;box-shadow:inset 0 0 0 1px var(--line2),inset 0 1px 0 rgba(255,255,255,.1),0 40px 80px -40px rgba(201,199,246,.45)}
-.tile--cream.svc:hover,.tile--lilac.svc:hover{box-shadow:inset 0 1px 0 #fff,0 40px 80px -40px rgba(201,199,246,.7)}
-.svc__top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
-.svc__num{display:inline-block;font:500 11px/1 var(--mono);letter-spacing:.2em;margin-bottom:16px;color:var(--dim)}
-.svc__num::after{content:" / 07"}
-.tile--cream .svc__num,.tile--lilac .svc__num{color:rgba(10,9,13,.45)}
-.svc__nail{width:54px;height:80px;flex:none;margin-left:auto;filter:drop-shadow(0 10px 18px rgba(201,199,246,.35));transition:transform .8s var(--spring)}
-.svc:hover .svc__nail{transform:rotate(-14deg) translateY(-6px) scale(1.08)}
-.svc h3{font-size:clamp(28px,2.8vw,42px);margin-bottom:12px}
-.svc p{max-width:36ch;opacity:.7}
-.svc__emoji{display:none}
-.svc--wide{flex-direction:row;align-items:stretch;padding:0}
-.svc--wide .svc__body{flex:1;padding:clamp(24px,3.4vw,48px);display:flex;flex-direction:column;justify-content:space-between;gap:28px}
-.svc--wide .svc__pic{flex:0 0 42%;margin:12px;border-radius:var(--r-photo);overflow:hidden}
-.svc--wide .svc__pic img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
-.svc--wide:hover .svc__pic img{scale:1.07}
+/* servicios: un solo panel sobrio, lista en dos columnas, sin efectos */
+.svc-panel{grid-column:1/13;padding:clamp(8px,1.6vw,20px) clamp(22px,3.4vw,48px) clamp(24px,3vw,40px)}
+.svc-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(28px,5vw,72px)}
+.svc-row{display:grid;grid-template-columns:44px 1fr;column-gap:14px;align-items:baseline;padding:clamp(20px,2.2vw,28px) 0;border-bottom:1px solid var(--line)}
+.svc-row__n{grid-row:span 2;font:500 11px/1 var(--mono);letter-spacing:.16em;color:var(--dim)}
+.svc-row h3{font-size:clamp(22px,2vw,28px);letter-spacing:-.03em;line-height:1.15}
+.svc-row p{margin-top:6px;color:var(--mute);font-size:15.5px;max-width:44ch}
+.svc-cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 28px;padding-top:clamp(24px,2.6vw,32px)}
+.svc-cta p{color:var(--mute);max-width:52ch}
+.svc-cta b{color:var(--fg);font-weight:500}
 
 /* ───── statement ───── */
 .statement{padding:clamp(90px,13vw,190px) var(--gut)}
@@ -283,20 +277,21 @@ section{scroll-margin-top:90px}
   .ins--a,.ins--w{grid-column:span 2}
 }
 
-/* ───── proceso (cartas apiladas) ───── */
+/* ───── tu cita (proceso) ───── */
 .steps{padding:clamp(70px,10vw,140px) var(--gut) 0}
 .steps__head{text-align:center;max-width:760px;margin:0 auto clamp(36px,5vw,64px)}
 .steps__head p{color:var(--mute);margin-top:18px}
-.steps__list{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(40px,8vh,90px);padding-bottom:12vh}
-.step{position:sticky;top:calc(96px + var(--i)*18px);min-height:min(66svh,560px);display:grid;grid-template-columns:1fr 1fr;gap:var(--gut);padding:12px;transform-origin:50% 0;transform:scale(var(--sc,1));filter:brightness(var(--br,1));will-change:transform}
-.step__copy{padding:clamp(18px,3vw,40px);display:flex;flex-direction:column;justify-content:space-between;gap:24px}
-.step__n{font:200 clamp(84px,10vw,156px)/.8 var(--display);letter-spacing:-.07em;background:var(--chrome);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;align-self:flex-start;padding-right:.05em}
-.tile--cream .step__n,.tile--lilac .step__n{background:var(--chrome-dark);-webkit-background-clip:text;background-clip:text}
-.step h3{font-size:clamp(30px,3.4vw,50px);margin-bottom:14px}
-.step p{opacity:.72;max-width:40ch}
-.step ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
-.step .photo{position:relative;min-height:260px;box-shadow:inset 0 0 0 1px var(--line)}
-.step .photo img{position:absolute;inset:0}
+/* tu cita: un solo panel con los 4 pasos en fila, sin fotos ni efectos */
+.howto{list-style:none;max-width:1180px;margin:0 auto;padding:clamp(8px,1.4vw,16px) clamp(22px,3.4vw,48px);display:grid;grid-template-columns:repeat(4,1fr);column-gap:clamp(20px,3vw,44px)}
+.howto__step{padding:clamp(22px,2.6vw,34px) 0}
+.howto__n{display:block;font:500 11px/1 var(--mono);letter-spacing:.16em;color:var(--dim);margin-bottom:18px}
+.howto h3{font-size:clamp(21px,1.8vw,26px);letter-spacing:-.03em;line-height:1.15;margin-bottom:10px}
+.howto p{color:var(--mute);font-size:15.5px}
+@media (max-width:600px){   /* más específico que la regla de 960px, que va después */
+  .steps .howto{grid-template-columns:1fr}
+  .steps .howto__step{border-bottom:1px solid var(--line)}
+  .steps .howto__step:last-child{border-bottom:0}
+}
 
 /* ───── redes / cierre ───── */
 .social{padding-top:clamp(50px,7vw,90px)}
@@ -310,15 +305,27 @@ section{scroll-margin-top:90px}
 .social__card .go span{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1px currentColor;transition:transform .5s var(--spring),background .3s,color .3s}
 .social__card:hover .go span{transform:rotate(-45deg);background:var(--chrome);box-shadow:none}
 .social__card:hover .go span svg{color:var(--ink)}
-.closing{grid-column:1/13;min-height:min(92svh,860px);padding:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;background:var(--bg)}
-.closing__bg{position:absolute;inset:0;transform:scale(var(--cs,1.18)) rotate(var(--cr,-3deg));filter:saturate(.75) contrast(1.05)}
-.closing__bg img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
-.closing__veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,7,10,.25),rgba(7,7,10,.15) 35%,rgba(7,7,10,.92)),radial-gradient(80% 60% at 50% 100%,rgba(201,199,246,.18),transparent 70%)}
+.closing{grid-column:1/13;min-height:min(70svh,640px);padding:0;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;background:var(--bg)}
 .closing__inner{position:relative;padding:clamp(24px,4vw,56px);width:100%}
 .closing__word{font:var(--cw,300) clamp(110px,26vw,400px)/.82 var(--display);letter-spacing:-.075em;background:var(--chrome);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 9s ease-in-out infinite alternate;filter:drop-shadow(0 0 60px rgba(201,199,246,.25))}
 .closing__word em{font-family:var(--serif);font-weight:400}
 .closing__sub{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;margin-top:26px;padding-top:22px;border-top:1px solid var(--line2)}
 .closing__sub p{font:300 clamp(19px,1.9vw,26px)/1.25 var(--display);letter-spacing:-.03em;text-align:left;max-width:26ch}
+.closing__loc{display:block;margin-top:8px;font:500 11px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+.footer__loc{display:inline-flex;align-items:center;gap:6px}
+/* aviso de cookies: informativo (el sitio no usa cookies de seguimiento) */
+.cookie{position:fixed;left:16px;bottom:16px;z-index:60;width:min(380px,calc(100vw - 32px));padding:18px 18px 16px;border-radius:18px;
+  background:rgba(16,14,20,.86);-webkit-backdrop-filter:blur(18px) saturate(1.2);backdrop-filter:blur(18px) saturate(1.2);
+  border:1px solid var(--line2);box-shadow:0 24px 60px -20px rgba(0,0,0,.7);color:var(--fg);
+  opacity:0;transform:translateY(14px);transition:opacity .5s var(--ease),transform .5s var(--ease);pointer-events:none}
+.cookie.is-on{opacity:1;transform:none;pointer-events:auto}
+.cookie__t{font:500 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
+.cookie p{font-size:14.5px;line-height:1.55;color:var(--mute)}
+.cookie__row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}
+.cookie__row a{font-size:14px;text-decoration:underline;text-underline-offset:3px;color:var(--fg)}
+.cookie .btn{height:40px;padding:0 18px;font-size:14px}
+.cookie a:focus-visible,.cookie button:focus-visible{outline:2px solid #f2c3b2;outline-offset:3px}
+@media (prefers-reduced-motion: reduce){.cookie{transition:none}}
 
 footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 30px;padding:30px clamp(20px,3.5vw,52px) 38px;font:500 11px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
 footer a{transition:color .3s}
@@ -343,7 +350,7 @@ html.lenis,html.lenis body{height:auto}
 [data-tilt]{transform:perspective(1100px) rotateX(calc(var(--rx,0deg) + var(--sx,0deg))) rotateY(calc(var(--ry,0deg) + var(--cy,0deg))) translateZ(var(--cz,0px));transform-style:preserve-3d;transition-property:translate,rotate,scale,opacity,box-shadow,border-radius;will-change:transform}
 .glare{position:absolute;inset:0;z-index:3;pointer-events:none;border-radius:inherit;opacity:var(--go,0);transition:opacity .5s;
   background:radial-gradient(60% 60% at var(--mx,50%) var(--my,50%),rgba(255,255,255,.26),rgba(255,255,255,.06) 40%,transparent 70%);mix-blend-mode:overlay}
-[data-tilt] .svc__nail,[data-tilt] h3,[data-tilt] .chip,[data-tilt] .ico{transform:translateZ(36px)}
+[data-tilt] h3,[data-tilt] .chip,[data-tilt] .ico{transform:translateZ(36px)}
 /* frasco 3D de la portada */
 .hero__3d{position:absolute;z-index:0;right:-2%;top:6%;width:52%;height:88%;pointer-events:none;opacity:0;transition:opacity 1.2s var(--ease)}
 .hero__3d.is-on{opacity:1}
@@ -403,13 +410,11 @@ h1 em .wsplit>span,.h2 em .wsplit>span{background:var(--chrome);background-size:
   .hero__detail{grid-column:8/13;aspect-ratio:auto}
   .hero__dial{grid-column:1/13}
   .hero__book{grid-column:1/13}
-  .svc,.svc:nth-child(2),.svc:nth-child(8){grid-column:span 6}
-  .svc--wide{grid-column:span 12 !important}
   .services__intro h2,.services__intro p{grid-column:1/13}
   .social__card{grid-column:span 6}
   .social__card:first-child{grid-column:span 12}
-  .step{grid-template-columns:1fr}
-  .step .photo{min-height:200px;max-height:34svh}
+  .howto{grid-template-columns:1fr 1fr}
+  .howto__step:nth-child(-n+2){border-bottom:1px solid var(--line)}
 }
 @media (max-width:760px){
   :root{--gut:8px;--r:18px;--r-photo:13px}
@@ -424,13 +429,10 @@ h1 em .wsplit>span,.h2 em .wsplit>span{background:var(--chrome);background-size:
   .hero__video{grid-column:1/13}
   .hero__detail{grid-column:1/13;aspect-ratio:16/10}
   .hero__dial{flex-direction:column;align-items:flex-start}
-  .svc,.svc:nth-child(2),.svc:nth-child(8),.svc--wide,.social__card,.social__card:first-child{grid-column:span 12 !important}
-  .svc{min-height:0}
-  .svc--wide{flex-direction:column}
-  .svc--wide .svc__pic{flex:none;aspect-ratio:4/3;margin:0 8px 8px}
+  .social__card,.social__card:first-child{grid-column:span 12 !important}
+  .svc-list{grid-template-columns:1fr}
   .gallery__head{flex-direction:column;align-items:flex-start;padding-top:64px}
   .work{height:56svh}
-  .step{top:calc(80px + var(--i)*12px)}
   .closing__word{font-size:clamp(100px,32vw,200px)}
 }
 @media (prefers-reduced-motion:reduce){
@@ -442,12 +444,53 @@ h1 em .wsplit>span,.h2 em .wsplit>span{background:var(--chrome);background-size:
   .gallery__track{width:auto;overflow-x:auto;transform:none;scroll-snap-type:x mandatory}
   .work{scroll-snap-align:start}
   .gallery__bar{display:none}
-  .step{position:relative;top:auto}
   .dial .bar{stroke-dashoffset:0}
+}
+/* ═════════ Intro: el logo KC se dibuja y se rellena sobre negro ═════════ */
+html.intro-on{overflow:hidden}
+html.intro-on body>:not(#intro),html.intro-on body>:not(#intro) *{animation-play-state:paused!important}
+#intro{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;background:#000;overflow:hidden}
+.intro__stage{position:absolute;inset:0;display:grid;place-items:center}
+.kc-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.intro__skip{position:absolute;right:clamp(16px,3vw,32px);bottom:clamp(16px,3vw,32px);height:38px;padding:0 16px;border-radius:999px;border:0;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);color:rgba(243,232,228,.72);font:500 10.5px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;cursor:pointer;opacity:0;transition:opacity .6s ease .6s,background .3s,color .3s}
+#intro.is-go .intro__skip{opacity:1}
+.intro__skip:hover{background:rgba(255,255,255,.12);color:#fff}
+.intro__skip:focus-visible{outline:2px solid #f2c3b2;outline-offset:3px;color:#fff}
+/* ═════════ Intro (assets/js/intro3d.js): túnel de glitter y portal de oro rosa ═════════ */
+#intro.k3{--hole:0vmax;align-content:center;gap:clamp(26px,5vh,48px);cursor:pointer;
+  background:radial-gradient(ellipse 34% 30% at 50% 48%,rgba(227,165,143,.16),transparent 70%),radial-gradient(ellipse 80% 70% at 50% 45%,#1c1220 0%,#07070a 70%);   /* luz de oro rosa al fondo del túnel */
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,transparent var(--hole),#000 calc(var(--hole) + 2px));
+  mask-image:radial-gradient(circle at 50% 50%,transparent var(--hole),#000 calc(var(--hole) + 2px))}
+.k3-gl{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;pointer-events:none}
+.k3-vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 80% at 50% 50%,transparent 58%,rgba(7,7,10,.8) 100%)}
+.k3-flash{position:absolute;left:50%;top:50%;translate:-50% -50%;width:calc(var(--hole) * 2 + 8px);aspect-ratio:1;border-radius:50%;border:2px solid #e3a58f;box-shadow:0 0 34px 8px rgba(242,167,195,.55);opacity:0;pointer-events:none}
+#intro.k3 .intro__skip{z-index:2}
+@media (max-width:760px){
 }
 </style>
 </head>
 <body>
+<!-- intro: túnel de glitter en los colores de la marca que se estira en estelas, y un portal de
+     oro rosa que revela la página. La intro anterior (logo por piezas) sigue en
+     assets/js/intro-logo.js: para volver a ella, restaura este bloque y las precargas del <head>. -->
+<div id="intro" class="k3" aria-label="Bienvenida de Katy Cardona Nails">
+  <canvas class="k3-gl" aria-hidden="true"></canvas>
+  <div class="k3-vig" aria-hidden="true"></div>
+  <div class="k3-flash" aria-hidden="true"></div>
+  <button class="intro__skip" type="button">Saltar</button>
+</div>
+<script>
+  (() => {
+    const i = document.getElementById('intro'), r = document.documentElement;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { i.remove(); return; }
+    r.classList.add('intro-on');
+    // Seguridad: si la escena no arranca (sin red o sin módulos), la página aparece igual
+    setTimeout(() => {
+      if (i.isConnected && !i.classList.contains('is-go')) { i.remove(); r.classList.remove('intro-on'); dispatchEvent(new Event('intro:done')); }
+    }, 7000);
+  })();
+</script>
+<script type="module" async src="assets/js/intro3d.js?v=24"></script>
 <div class="progress" aria-hidden="true"></div>
 
 <!-- gradiente compartido del dial -->
@@ -461,8 +504,8 @@ h1 em .wsplit>span,.h2 em .wsplit>span{background:var(--chrome);background-size:
 
 <header class="nav" id="nav">
   <a href="#inicio" class="logo" aria-label="Katy Cardona Nails, inicio">
-    <span class="logo__mark" aria-hidden="true"><img src="assets/brand/marca.svg" alt="" width="38" height="38"></span>
-    <span class="logo__word"><b>Katy</b> Cardona <small>Nail studio</small></span>
+    <span class="logo__mark" aria-hidden="true"><img src="assets/brand/logo-mark.png" alt="" width="38" height="38"></span>
+    <span class="logo__word"><b>Katy</b> Cardona <small>Nail studio · Panamá</small></span>
   </a>
   <nav class="nav__links" aria-label="Secciones">
     <a href="#servicios">Servicios</a>
@@ -491,7 +534,7 @@ h1 em .wsplit>span,.h2 em .wsplit>span{background:var(--chrome);background-size:
         <span class="pill" style="--i:2">Rubber Base</span>
         <span class="pill" style="--i:3">Soft Gel</span>
       </div>
-      <span class="chip"><span class="dot"></span>Agenda abierta por DM</span>
+      <span class="chip"><span class="dot"></span>Panamá · Agenda abierta por DM</span>
       <h1>
         <span class="line"><span style="--i:0">Uñas que</span></span>
         <span class="line"><span style="--i:1">cuentan <em>tu</em></span></span>
@@ -548,57 +591,21 @@ h1 em .wsplit>span,.h2 em .wsplit>span{background:var(--chrome);background-size:
       <p data-reveal style="--d:.15">Cada técnica tiene su momento. Si no sabes cuál elegir, escríbeme: miramos juntas tu uña natural y lo que quieres lograr.</p>
     </div>
 
-    <article class="tile tile--cream svc" data-tilt data-reveal style="--d:0">
-      <div class="svc__top"><span class="svc__emoji">💅</span>
-        <svg class="svc__nail" viewBox="0 0 40 60" aria-hidden="true"><path d="M20 1C29 9 34 24 34 36v18c0 3-2 5-5 5H11c-3 0-5-2-5-5V36C6 24 11 9 20 1z" fill="#e88aa6"/><path d="M14 22c2-6 5-10 6-12" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".7"/></svg></div>
-      <div><span class="svc__num">01</span><h3>Acrílico</h3><p>Extensiones resistentes con la forma que sueñas: almendra, cuadrada, coffin o stiletto.</p></div>
-    </article>
-
-    <article class="tile tile--lilac svc" data-tilt data-reveal style="--d:.08">
-      <div class="svc__top"><span class="svc__emoji">🤍</span>
-        <svg class="svc__nail" viewBox="0 0 40 60" aria-hidden="true"><path d="M20 2c10 0 14 9 14 20v32c0 3-2 5-5 5H11c-3 0-5-2-5-5V22C6 11 10 2 20 2z" fill="#fdf3ee"/><path d="M6 14c6 5 22 5 28 0" stroke="#e88aa6" stroke-width="4" fill="none"/><path d="M13 22c1-4 3-7 6-8" stroke="#cdd0ee" stroke-width="2.5" stroke-linecap="round"/></svg></div>
-      <div><span class="svc__num">02</span><h3>Polygel</h3><p>Lo mejor del gel y el acrílico en uno: liviano, flexible y con un acabado muy natural.</p></div>
-    </article>
-
-    <article class="tile tile--wine svc" data-tilt data-reveal style="--d:.16">
-      <div class="svc__top"><span class="svc__emoji">🌸</span>
-        <svg class="svc__nail" viewBox="0 0 40 60" aria-hidden="true"><path d="M20 4c9 0 14 7 14 17v33c0 3-2 5-5 5H11c-3 0-5-2-5-5V21C6 11 11 4 20 4z" fill="#f7cdd8"/><circle cx="20" cy="30" r="5" fill="#e88aa6"/><circle cx="20" cy="30" r="2" fill="#c9a35f"/><path d="M13 16c1-3 3-5 5-6" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg></div>
-      <div><span class="svc__num">03</span><h3>Rubber Base</h3><p>Base flexible que nivela y refuerza tu uña natural para que crezca fuerte y bonita.</p></div>
-    </article>
-
-    <article class="tile tile--blush svc svc--wide" data-tilt data-reveal style="--d:0">
-      <div class="svc__body">
-        <div class="svc__top"><span class="svc__emoji">✨</span>
-          <svg class="svc__nail" viewBox="0 0 40 60" aria-hidden="true"><path d="M20 2c10 0 14 9 14 20v32c0 3-2 5-5 5H11c-3 0-5-2-5-5V22C6 11 10 2 20 2z" fill="#7b1a2f"/><path d="M10 50l4-6 3 5 4-7 3 5" stroke="#c9a35f" stroke-width="2" fill="none"/><path d="M13 20c1-5 4-9 7-10" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".6"/></svg></div>
-        <div><span class="svc__num">04</span><h3>Soft Gel</h3><p>Tips de gel suave para un largo instantáneo, cómodo y ligero, listo para decorar como quieras.</p>
-          <ul style="list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:18px"><li class="chip">Largo al instante</li><li class="chip">Ligero</li><li class="chip">Listo para diseño</li></ul></div>
+    <div class="tile svc-panel" data-reveal>
+      <ol class="svc-list">
+        <li class="svc-row"><span class="svc-row__n">01</span><h3>Acrílico</h3><p>Extensiones resistentes con la forma que sueñas: almendra, cuadrada, coffin o stiletto.</p></li>
+        <li class="svc-row"><span class="svc-row__n">02</span><h3>Polygel</h3><p>Lo mejor del gel y el acrílico en uno: liviano, flexible y de acabado natural.</p></li>
+        <li class="svc-row"><span class="svc-row__n">03</span><h3>Rubber Base</h3><p>Base flexible que nivela y refuerza tu uña natural para que crezca fuerte.</p></li>
+        <li class="svc-row"><span class="svc-row__n">04</span><h3>Soft Gel</h3><p>Tips de gel suave para un largo al instante, cómodo y ligero.</p></li>
+        <li class="svc-row"><span class="svc-row__n">05</span><h3>Baño de gel</h3><p>Una capa de gel sobre tu uña natural: más brillo, grosor y protección.</p></li>
+        <li class="svc-row"><span class="svc-row__n">06</span><h3>Esmaltado semipermanente</h3><p>Color intenso y brillo de espejo, con secado inmediato.</p></li>
+        <li class="svc-row"><span class="svc-row__n">07</span><h3>Nivelación de uña natural</h3><p>Corrige la superficie de tu uña para un acabado liso y parejo.</p></li>
+      </ol>
+      <div class="svc-cta">
+        <p><b>¿Tienes una idea?</b> Envíame tu foto de inspiración y la adaptamos a tus manos.</p>
+        <a class="btn btn--cream" href="https://www.instagram.com/katycardona.nails_" target="_blank" rel="noopener">Enviar inspiración</a>
       </div>
-      <div class="svc__pic"><img src="assets/rosa-mariposa.jpg" alt="Uñas almendra en francés rosa con mariposas doradas" loading="lazy"></div>
-    </article>
-
-    <article class="tile tile--plum svc" data-tilt data-reveal style="--d:.08">
-      <div class="svc__top"><span class="svc__emoji">🤍</span>
-        <svg class="svc__nail" viewBox="0 0 40 60" aria-hidden="true"><path d="M20 3c9 0 14 8 14 18v33c0 3-2 5-5 5H11c-3 0-5-2-5-5V21C6 11 11 3 20 3z" fill="#f7cdd8" opacity=".9"/><path d="M6 21C6 11 11 3 20 3s14 8 14 18" fill="none" stroke="#fdf3ee" stroke-width="3"/><path d="M13 18c1-4 3-6 6-7" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg></div>
-      <div><span class="svc__num">05</span><h3>Baño de gel</h3><p>Una capa de gel sobre tu uña natural: más brillo, más grosor y más protección.</p></div>
-    </article>
-
-    <article class="tile tile--rose svc" data-tilt data-reveal style="--d:0">
-      <div class="svc__top"><span class="svc__emoji">✨</span>
-        <svg class="svc__nail" viewBox="0 0 40 60" aria-hidden="true"><rect x="6" y="4" width="28" height="55" rx="6" fill="#7b1a2f"/><path d="M12 14c0-4 2-6 5-6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".7"/><circle cx="26" cy="46" r="2" fill="#c9a35f"/><circle cx="21" cy="50" r="1.3" fill="#c9a35f"/></svg></div>
-      <div><span class="svc__num">06</span><h3>Esmaltado semipermanente</h3><p>Color intenso y brillo de espejo, con secado inmediato en lámpara.</p></div>
-    </article>
-
-    <article class="tile tile--cream svc" data-tilt data-reveal style="--d:.08">
-      <div class="svc__top"><span class="svc__emoji">🌷</span>
-        <svg class="svc__nail" viewBox="0 0 40 60" aria-hidden="true"><path d="M20 6c9 0 14 6 14 15v33c0 3-2 5-5 5H11c-3 0-5-2-5-5V21C6 12 11 6 20 6z" fill="#f7cdd8"/><path d="M6 24h28M6 32h28" stroke="#fdf3ee" stroke-width="1.5" opacity=".8"/><path d="M13 17c1-3 3-5 6-6" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg></div>
-      <div><span class="svc__num">07</span><h3>Nivelación de uña natural</h3><p>Corrige la superficie de tu uña para un acabado liso, parejo y elegante.</p></div>
-    </article>
-
-    <article class="tile tile--wine svc" data-tilt data-reveal style="--d:.16;justify-content:space-between">
-      <div class="svc__top"><span class="kicker" style="margin:0">¿Tienes una idea?</span></div>
-      <div><h3>Diseño a tu medida</h3><p>Envíame tu foto de inspiración y la adaptamos a tus manos.</p>
-        <a class="btn btn--cream" style="margin-top:22px" href="https://www.instagram.com/katycardona.nails_" target="_blank" rel="noopener">Enviar inspiración</a></div>
-    </article>
+    </div>
   </section>
 
   <!-- ═════════ STATEMENT ═════════ -->
@@ -625,9 +632,7 @@ h1 em .wsplit>span,.h2 em .wsplit>span{background:var(--chrome);background-size:
           <h3>Delicado, atrevido o un poco de los dos.</h3>
           <a class="btn btn--cream" href="https://www.instagram.com/katycardona.nails_" target="_blank" rel="noopener" style="align-self:flex-start">Ver más en IG</a>
         </div>
-        <figure class="work work--sq" data-tilt style="aspect-ratio:1/1"><img src="assets/detalle-dorado.jpg" alt="Detalle de láminas de oro sobre nude" loading="lazy"><figcaption class="chip chip--cream">Nude · foil dorado</figcaption></figure>
         <figure class="work work--tall" data-tilt style="aspect-ratio:480/784"><img src="assets/stiletto-5.6.jpg" alt="Uñas stiletto plateadas con estampado animal" loading="lazy"><figcaption class="chip chip--cream">Stiletto · efecto plata</figcaption></figure>
-        <figure class="work work--sq" data-tilt style="aspect-ratio:1/1;height:min(56svh,420px)"><img src="assets/detalle-burdeos.jpg" alt="Uña burdeos brillante sobre satín" loading="lazy"><figcaption class="chip chip--cream">Semipermanente burdeos</figcaption></figure>
         <figure class="work work--tall" data-tilt style="aspect-ratio:1170/1380"><img src="assets/glitter-frances.webp" alt="Uñas cuadradas nude con puntas de glitter, francés blanco y piedras" loading="lazy"><figcaption class="chip chip--cream">Glitter en puntas · francés con piedras</figcaption></figure>
         <figure class="work work--story" data-tilt style="aspect-ratio:902/1600"><img src="assets/aurora-lila.webp" alt="Uñas almendra lila con efecto cromo aurora y piedras" loading="lazy"><figcaption class="chip chip--cream">Lila aurora · cromo</figcaption></figure>
         <figure class="work work--story" data-tilt style="aspect-ratio:902/1600"><img src="assets/frances-brillo.webp" alt="Uñas cuadradas con francés blanco, baby boomer y estrellitas" loading="lazy"><figcaption class="chip chip--cream">Francés · baby boomer · estrellitas</figcaption></figure>
@@ -661,32 +666,12 @@ h1 em .wsplit>span,.h2 em .wsplit>span{background:var(--chrome);background-size:
       <h2 class="h2" id="steps-title" data-reveal="clip">Así de fácil, <em>en cuatro pasos</em></h2>
       <p data-reveal style="--d:.1">Sin complicaciones: me escribes, elegimos juntas y tú solo te relajas.</p>
     </div>
-    <div class="steps__list">
-      <article class="step tile tile--blush" style="--i:0">
-        <div class="step__copy"><span class="step__n">01</span>
-          <div><h3>Escríbeme por DM</h3><p>Mándame un mensaje por Instagram o TikTok con el servicio que te interesa y te respondo con la disponibilidad.</p>
-            <ul><li class="chip">@katycardona.nails_</li><li class="chip">@kath_cardona</li></ul></div></div>
-        <div class="photo"><img src="assets/glitter-frances.webp" alt="" loading="lazy" style="object-position:50% 40%"></div>
-      </article>
-      <article class="step tile tile--cream" style="--i:1">
-        <div class="step__copy"><span class="step__n">02</span>
-          <div><h3>Elegimos tu diseño</h3><p>Comparte tu inspiración: colores, forma, largo. Te ayudo a escoger la técnica que mejor va con tu uña natural.</p>
-            <ul><li class="chip">Forma</li><li class="chip">Largo</li><li class="chip">Color</li><li class="chip">Decoración</li></ul></div></div>
-        <div class="photo"><img src="assets/detalle-dorado.jpg" alt="" loading="lazy"></div>
-      </article>
-      <article class="step tile tile--wine" style="--i:2">
-        <div class="step__copy"><span class="step__n">03</span>
-          <div><h3>Tu momento</h3><p>Preparación cuidadosa de la uña, aplicación de la técnica y el diseño a mano, detalle por detalle.</p>
-            <ul><li class="chip chip--cream">Preparación</li><li class="chip chip--cream">Técnica</li><li class="chip chip--cream">Diseño</li></ul></div></div>
-        <div class="photo"><img src="assets/stiletto-3.2.jpg" alt="" loading="lazy"></div>
-      </article>
-      <article class="step tile tile--lilac" style="--i:3">
-        <div class="step__copy"><span class="step__n">04</span>
-          <div><h3>Cuídalas</h3><p>Aceite de cutícula a diario, guantes para limpiar y nada de usarlas como herramienta. Así tu set se ve bonito por más tiempo.</p>
-            <ul><li class="chip">Aceite de cutícula</li><li class="chip">Guantes</li><li class="chip">Retoques a tiempo</li></ul></div></div>
-        <div class="photo"><img src="assets/burdeos-dorado.jpg" alt="" loading="lazy"></div>
-      </article>
-    </div>
+    <ol class="tile howto" data-reveal>
+      <li class="howto__step"><span class="howto__n">01</span><h3>Escríbeme por DM</h3><p>Mándame un mensaje por Instagram o TikTok y te respondo con la disponibilidad.</p></li>
+      <li class="howto__step"><span class="howto__n">02</span><h3>Elegimos tu diseño</h3><p>Forma, largo y color: te ayudo a escoger la técnica ideal para tu uña.</p></li>
+      <li class="howto__step"><span class="howto__n">03</span><h3>Tu momento</h3><p>Preparo tu uña y aplico la técnica y el diseño a mano, con calma.</p></li>
+      <li class="howto__step"><span class="howto__n">04</span><h3>Cuídalas</h3><p>Aceite de cutícula a diario y guantes para limpiar: así tu set dura más.</p></li>
+    </ol>
   </section>
 
   <!-- ═════════ REDES ═════════ -->
@@ -710,12 +695,10 @@ h1 em .wsplit>span,.h2 em .wsplit>span{background:var(--chrome);background-size:
     </a>
 
     <div class="tile closing" id="closing">
-      <div class="closing__bg" aria-hidden="true"><img src="assets/burdeos-dorado.jpg" alt="" width="1168" height="1290" loading="lazy" decoding="async"></div>
-      <div class="closing__veil" aria-hidden="true"></div>
       <div class="closing__inner">
         <div class="closing__word" aria-label="Katy">Katy<em>.</em></div>
         <div class="closing__sub">
-          <p>Tus manos, en las mejores manos. Te espero ✨</p>
+          <p>Tus manos, en las mejores manos. Te espero ✨<span class="closing__loc">Ubicada en Panamá</span></p>
           <a class="btn btn--cream" href="https://www.instagram.com/katycardona.nails_" target="_blank" rel="noopener">Agenda tu cita por DM</a>
         </div>
       </div>
@@ -725,8 +708,36 @@ h1 em .wsplit>span,.h2 em .wsplit>span{background:var(--chrome);background-size:
 
 <footer>
   <span>© <span id="year">2026</span> Katy Cardona Nails</span>
-  <span><a href="https://www.instagram.com/katycardona.nails_" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.tiktok.com/@kath_cardona" target="_blank" rel="noopener">TikTok</a></span>
+  <span class="footer__loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Panamá</span>
+  <span><a href="/privacidad">Privacidad y cookies</a> · <a href="https://www.instagram.com/katycardona.nails_" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.tiktok.com/@kath_cardona" target="_blank" rel="noopener">TikTok</a></span>
 </footer>
+
+<!-- aviso de cookies: aparece una vez (después de la intro) hasta que se cierra -->
+<div class="cookie" id="cookie" role="region" aria-label="Aviso de cookies" hidden>
+  <p class="cookie__t">Cookies</p>
+  <p>Este sitio no usa cookies de seguimiento ni de publicidad. Solo usamos servicios necesarios para mostrarlo (tipografías y alojamiento).</p>
+  <div class="cookie__row">
+    <a href="/privacidad#cookies">Más información</a>
+    <button class="btn btn--cream" type="button" id="cookieOk">Entendido</button>
+  </div>
+</div>
+<script>
+(() => {
+  const box = document.getElementById('cookie');
+  const KEY = 'kc-aviso-cookies';
+  const seen = () => { try { return localStorage.getItem(KEY) === '1'; } catch { return false; } };
+  if (!box || seen()) return;
+  const show = () => setTimeout(() => { box.hidden = false; requestAnimationFrame(() => box.classList.add('is-on')); }, 900);
+  document.getElementById('cookieOk').addEventListener('click', () => {
+    try { localStorage.setItem(KEY, '1'); } catch {}
+    box.classList.remove('is-on');
+    setTimeout(() => { box.hidden = true; }, 500);
+  });
+  // se muestra cuando ya terminó la intro (o de una vez si no hay intro)
+  if (document.getElementById('intro') && document.documentElement.classList.contains('intro-on')) addEventListener('intro:done', show, { once: true });
+  else show();
+})();
+</script>
 
 <script>
 (() => {
@@ -788,7 +799,6 @@ h1 em .wsplit>span,.h2 em .wsplit>span{background:var(--chrome);background-size:
   addEventListener('load', sizeGallery);
 
   const works = $$('.work', track);
-  const steps = $$('.step');
   const closing = $('#closing'), word = $('.closing__word');
 
   const frame = () => {
@@ -824,22 +834,10 @@ h1 em .wsplit>span,.h2 em .wsplit>span{background:var(--chrome);background-size:
       w.style.setProperty('--wsat', (.55 + k * .5).toFixed(3));
     });
 
-    // cartas apiladas
-    steps.forEach((s, i) => {
-      const next = steps[i + 1];
-      if (!next) return;
-      const a = s.getBoundingClientRect(), b = next.getBoundingClientRect();
-      const p = clamp((a.bottom - b.top) / a.height);
-      s.style.setProperty('--sc', (1 - p * .08).toFixed(3));
-      s.style.setProperty('--br', (1 - p * .35).toFixed(3));
-    });
-
-    // cierre: el nombre gana peso y la foto se endereza
+    // cierre: el nombre gana peso al llegar
     const cr = closing.getBoundingClientRect();
     const cp = clamp((vh - cr.top) / (vh + cr.height * .4));
     word.style.setProperty('--cw', Math.round(300 + cp * 300));
-    closing.style.setProperty('--cs', (1.18 - cp * .14).toFixed(3));
-    closing.style.setProperty('--cr', (-3 + cp * 3).toFixed(2) + 'deg');
   };
   let ticking = false;
   const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { frame(); ticking = false; }); } };
@@ -872,17 +870,28 @@ h1 em .wsplit>span,.h2 em .wsplit>span{background:var(--chrome);background-size:
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <script defer src="assets/js/interaccion.js"></script>
 <script>
-  addEventListener('load', () => {
-    setTimeout(() => {
-      const s = document.createElement('script');
-      s.type = 'module';
-      s.src = 'assets/js/frasco3d.js';
-      document.body.appendChild(s);
-    }, 800);
-  });
+  // El frasco 3D de la portada prepara vidrio con reflejos y eso frena el navegador un instante:
+  // se carga cuando la página terminó de cargar Y la intro ya terminó, para que la entrada vaya fluida.
+  (() => {
+    let pageLoaded = document.readyState === 'complete';
+    let introDone = !document.getElementById('intro');
+    let started = false;
+    const go = () => {
+      if (started || !pageLoaded || !introDone) return;
+      started = true;
+      setTimeout(() => {
+        const s = document.createElement('script');
+        s.type = 'module';
+        s.src = 'assets/js/frasco3d.js';
+        document.body.appendChild(s);
+      }, 250);
+    };
+    addEventListener('load', () => { pageLoaded = true; go(); });
+    addEventListener('intro:done', () => { introDone = true; go(); }, { once: true });
+    go();
+  })();
 </script>
 </body>
 </html>

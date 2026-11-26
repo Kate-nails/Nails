@@ -179,7 +179,7 @@
     }
 
     // parallax suave dentro de las fotos
-    $$('.ins img, .svc__pic img, .step .photo img').forEach(img => {
+    $$('.ins img').forEach(img => {
       gsap.fromTo(img, { yPercent: -6 }, {
         yPercent: 6, ease: 'none',
         scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true },
